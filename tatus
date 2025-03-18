@@ -1,0 +1,2 @@
+[33m0f323c1[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m Fix: Move authOptions to separate file and update imports
+[33m5aa016a[m Fix: Add 'use client' directives to React components using hooks
