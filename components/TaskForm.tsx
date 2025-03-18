@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from 'react';
 import { FiCalendar, FiClock, FiX } from 'react-icons/fi';
 

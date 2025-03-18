@@ -1,3 +1,5 @@
+"use client";
+
 import { FiClock, FiCalendar } from 'react-icons/fi';
 
 // Mock data - in a real app, this would come from an API call
