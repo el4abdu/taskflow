@@ -2,9 +2,7 @@ import { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 import GitHubProvider from 'next-auth/providers/github';
-import { compare } from 'bcryptjs';
-import connectToDatabase from '@/lib/mongodb';
-import User from '@/models/User';
+import { supabase } from '@/lib/supabase';
 
 // Extend NextAuth types to include user ID
 declare module "next-auth" {
@@ -46,27 +44,32 @@ export const authOptions: NextAuthOptions = {
           throw new Error('Please enter your email and password');
         }
 
-        await connectToDatabase();
+        // Sign in with Supabase Auth
+        const { data: { user }, error } = await supabase.auth.signInWithPassword({
+          email: credentials.email,
+          password: credentials.password,
+        });
 
-        // Find user by email and explicitly select the password field
-        const user = await User.findOne({ email: credentials.email }).select('+password');
+        if (error) {
+          throw new Error(error.message);
+        }
 
         if (!user) {
           throw new Error('No user found with this email');
         }
 
-        // Compare passwords
-        const isPasswordMatch = await compare(credentials.password, user.password);
-
-        if (!isPasswordMatch) {
-          throw new Error('Invalid password');
-        }
+        // Get user profile
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('*')
+          .eq('id', user.id)
+          .single();
 
         return {
-          id: user._id.toString(),
-          name: user.name,
+          id: user.id,
+          name: profile?.name || user.email?.split('@')[0],
           email: user.email,
-          image: user.image,
+          image: profile?.image,
         };
       },
     }),
