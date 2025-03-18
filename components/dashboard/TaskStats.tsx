@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement } from 'chart.js';
 import { Doughnut, Bar } from 'react-chartjs-2';
+import type { ChartData, ChartOptions } from 'chart.js';
 
 // Register Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement);
@@ -59,10 +60,10 @@ const categoryData = {
 };
 
 const TaskStats = () => {
-  // Use refs to store chart instances for potential updates
-  const completionChartRef = useRef<ChartJS>(null);
-  const weeklyChartRef = useRef<ChartJS>(null);
-  const categoryChartRef = useRef<ChartJS>(null);
+  // Use refs to store chart instances for potential updates - with correct type annotations
+  const completionChartRef = useRef<any>(null);
+  const weeklyChartRef = useRef<any>(null);
+  const categoryChartRef = useRef<any>(null);
 
   // Chart options
   const doughnutOptions = {
