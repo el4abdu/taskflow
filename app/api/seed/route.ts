@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import { hash } from 'bcryptjs';
 import connectToDatabase from '@/lib/mongodb';
 import User from '@/models/User';
 
@@ -20,15 +19,12 @@ export async function GET(request: Request) {
         }
       });
     }
-
-    // Create a hashed password
-    const hashedPassword = await hash('1234', 12);
     
-    // Create default test user
+    // Create default test user - password will be hashed by the User model's pre-save hook
     const user = await User.create({
       name: 'Abdu',
       email: 'abdu@taskflow.com',
-      password: hashedPassword,
+      password: '1234',
       image: 'https://ui-avatars.com/api/?name=Abdu&background=random',
     });
 
