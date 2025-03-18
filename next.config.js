@@ -4,9 +4,9 @@ const nextConfig = {
   images: {
     domains: ['images.unsplash.com', 'ui-avatars.com', 'lh3.googleusercontent.com', 'avatars.githubusercontent.com'],
   },
-  output: 'export',
-  // Dynamic API routes won't work with static export
-  // We'd need to modify our approach to use external API services
+  // Remove the static export configuration to enable API routes
+  // output: 'export',
+  // Enable server-side rendering and API routes for NextAuth
   // Add any additional configuration here
 };
 
