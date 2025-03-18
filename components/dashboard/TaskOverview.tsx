@@ -4,14 +4,26 @@ import { useState } from 'react';
 import { FiClock, FiCalendar, FiFilter } from 'react-icons/fi';
 import TaskCard from '../TaskCard';
 
+// Define Task type to match TaskCard's interface
+interface Task {
+  _id: string;
+  title: string;
+  description?: string;
+  status: 'todo' | 'in-progress' | 'completed';
+  priority: 'low' | 'medium' | 'high';
+  category?: string;
+  dueDate?: Date;
+  scheduledTime?: Date;
+}
+
 // Mock data - in a real app, this would come from an API call
-const mockTasks = [
+const mockTasks: Task[] = [
   {
     _id: '1',
     title: 'Complete project proposal',
     description: 'Finish writing the project proposal document with all requirements and specifications.',
-    status: 'in-progress' as const,
-    priority: 'high' as const,
+    status: 'in-progress',
+    priority: 'high',
     category: 'Work',
     dueDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 2), // 2 days from now
   },
@@ -19,8 +31,8 @@ const mockTasks = [
     _id: '2',
     title: 'Schedule team meeting',
     description: 'Set up a meeting with the team to discuss next sprint goals',
-    status: 'todo' as const,
-    priority: 'medium' as const,
+    status: 'todo',
+    priority: 'medium',
     category: 'Work',
     dueDate: new Date(Date.now() + 1000 * 60 * 60 * 24), // 1 day from now
   },
@@ -28,8 +40,8 @@ const mockTasks = [
     _id: '3',
     title: 'Grocery shopping',
     description: 'Buy groceries for the week',
-    status: 'todo' as const,
-    priority: 'low' as const,
+    status: 'todo',
+    priority: 'low',
     category: 'Personal',
     dueDate: new Date(Date.now() + 1000 * 60 * 60 * 12), // 12 hours from now
   },
@@ -37,18 +49,18 @@ const mockTasks = [
     _id: '4',
     title: 'Review pull requests',
     description: 'Review and approve team pull requests',
-    status: 'completed' as const,
-    priority: 'high' as const,
+    status: 'completed',
+    priority: 'high',
     category: 'Work',
     dueDate: new Date(Date.now() - 1000 * 60 * 60 * 24), // 1 day ago
   },
 ];
 
 const TaskOverview = () => {
-  const [tasks, setTasks] = useState(mockTasks);
+  const [tasks, setTasks] = useState<Task[]>(mockTasks);
   const [filter, setFilter] = useState<'all' | 'active' | 'completed'>('active');
 
-  const handleEdit = (task: any) => {
+  const handleEdit = (task: Task) => {
     console.log('Edit task:', task);
     // In a real app, this would open a modal or navigate to an edit page
   };
