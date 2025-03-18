@@ -15,6 +15,7 @@ TaskFlow is a modern web application for task management with AI-powered schedul
 - **Team Collaboration**: Share tasks with teammates (coming soon)
 - **AI Productivity Insights**: Get personalized recommendations to improve your workflow
 - **Dark Mode & Responsive Design**: Beautiful UI that works on any device
+- **AI Chat Assistant**: Get help from our AI assistant to manage your tasks efficiently
 
 ## Tech Stack
 
