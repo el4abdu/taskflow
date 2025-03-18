@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import connectToDatabase from '@/lib/mongodb';
 import Category from '@/models/Category';
-import { authOptions } from '../auth/[...nextauth]/route';
+import { authOptions } from '../auth/[...nextauth]/auth';
 
 // Get all categories for the current user
 export async function GET(req: NextRequest) {

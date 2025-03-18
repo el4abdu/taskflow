@@ -1,7 +1,7 @@
 import { getServerSession } from 'next-auth/next';
 import Link from 'next/link';
 import { FiPlus, FiList, FiCalendar, FiClock, FiPieChart } from 'react-icons/fi';
-import { authOptions } from '../api/auth/[...nextauth]/route';
+import { authOptions } from '../api/auth/[...nextauth]/auth';
 import TaskOverview from '@/components/dashboard/TaskOverview';
 import UpcomingTasks from '@/components/dashboard/UpcomingTasks';
 import TaskStats from '@/components/dashboard/TaskStats';

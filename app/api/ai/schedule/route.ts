@@ -3,7 +3,7 @@ import { getServerSession } from 'next-auth';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import connectToDatabase from '@/lib/mongodb';
 import Task from '@/models/Task';
-import { authOptions } from '../../auth/[...nextauth]/route';
+import { authOptions } from '../../auth/[...nextauth]/auth';
 
 // Initialize Gemini AI
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
